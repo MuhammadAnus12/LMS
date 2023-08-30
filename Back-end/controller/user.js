@@ -15,7 +15,7 @@ export const getUser= async (req,res,next)=>{
 }
 } 
 
-export const postBook= async(req,res,next)=>{
+export const bookToBorrow= async(req,res,next)=>{
     try{
         const book= await Book.findOne({isbn: req.body.isbn})
         if (book === null){
@@ -44,7 +44,7 @@ export const postBook= async(req,res,next)=>{
     }
 }
 
-export const postReturn = async(req,res,next)=>{
+export const bookReturn = async(req,res,next)=>{
     try{
         const book = await Book.findOne({isbn: req.body.isbn})
         if(book === null){
@@ -93,7 +93,7 @@ export const showUser= async (req,res,next)=>{
     }
 }
 
-export const postLogin= async (req,res,next)=>{
+export const login= async (req,res,next)=>{
     try{
         const user = await User.findOne({username: req.body.username})
         if (username === req.body.username){
@@ -109,7 +109,7 @@ export const postLogin= async (req,res,next)=>{
     }
 }
 
-export const getLogout= (req,res)=>{
+export const logout= (req,res)=>{
     req.session.destroy()
     return res.status(200).json({success: true})
 }
